@@ -18,6 +18,7 @@ The main script is VideoClassification.py, take a look at the args to see the va
 ## Part 2: ImageBasedEvaluation model.
 
 -The model itself needs to be downloaded from https://tinyurl.com/ImageBasedModel, while the sampled dataset from https://tinyurl.com/fhpaax69. As above, copy the content in the subfolder.
+
 -There are two notebookds to handle model training/inference inside the folder.
 
 ## Part 3: TODO:
