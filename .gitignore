@@ -3,5 +3,5 @@ ContentDisplayEvalOne
 **/__pycache__/
 VideoClassification/FIFAdataset/*
 VideoClassification/videomae-baseFIFAfinetuned_v2/*
-ImageBasedEvaluation/*
-
+ImageBasedEvaluation/Dataset/*
+/ImageBasedEvaluation/model
