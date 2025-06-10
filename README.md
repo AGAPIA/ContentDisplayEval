@@ -1,28 +1,53 @@
-# ContentDisplayEval
-A framework for testing the correctness of the visualizations rendered by in-game cameras
+# Automated Visual Anomaly Detection Framework
 
+This repository provides a complete pipeline for generating, training, and deploying automated visual anomaly detection in real-time 3D applications (e.g., video games). It covers both **texture** and **mesh** anomaly detection through two-stage deep learning architectures, as well as Unity-based data generation tools and deployment artifacts.
 
-##  Part 1: Folder VideoClassification contains the video content evaluation methods. 
--The trained model can be found at https://tinyurl.com/ModelVideoClassification.
+It is a continuations of the two papers:
+- EASE2024: Automated evaluation of game content display using deep learning, https://dl.acm.org/doi/10.1145/3661167.3661184 
+- EASE2025: https://conf.researchr.org/details/ease-2025/ease-2025-industry-papers/6/Hierarchical-deep-learning-framework-for-continuous-state-aware-visual-glitch-detect (to be presented)
+## Project Overview
 
--A sample dataset can be found at https://tinyurl.com/DatasetVideo.
+- **DataGenerator/**  
+  Unity C# scripts to introduce controlled visual anomalies and capture screenshots + metadata.  
+  - [Dataset Generator Documentation](DataGenerator/unity_dataset_generator_doc.md)
 
--Just download the content inside the VideoClassification folder and give it a go. 
-The main script is VideoClassification.py, take a look at the args to see the various options you have for training/inference first. It needs to point to the local working folder VideoClassification to have paths working correctly. 
+- **Pipelines/**  
+  Python implementations of the two-stage detection pipelines and orchestration scripts:  
+  - **Texture Pipeline**  
+    - [Stage 1: Feature Extraction (ShuffleNetV2)](Pipelines/texture_stage1/)  
+    - [Stage 2: Refinement (DenseNet121)](Pipelines/texture_stage2/)  
+    - [Texture Pipeline User Guide](Pipelines/texture_pipeline_user_guide.md)  
+    - [Run Full Texture Inference](Pipelines/run_full_texture_inference.py)  
+  - **Mesh Pipeline**  
+    - [Stage 1: Segmentation (U-Net)](Pipelines/mesh_stage1/)  
+    - [Stage 2: Refinement (DeepLabV3+)](Pipelines/mesh_stage2/)  
+    - [Mesh Pipeline User Guide](Pipelines/mesh_pipeline_user_guide.md)  
+    - [Run Full Mesh Pipeline](Pipelines/run_full_mesh_pipeline.py)
 
--If you use PyCharm, there are already two configurations out-of-the-box for this, one for train and one for evaluation.
+- **Deployments/**  
+  Artifacts for containerization and service deployment:  
+  - [Deployments README](Deployments/README.md)  
+  - Docker, Kubernetes, gRPC server code, scripts, configs, and docs in subfolders.
 
--The evaluation will output a csv file containing the results for each of the "val" item in the dataset sample. The output can be found in results/ subfolder.
+## Getting Started
 
+1. **Data Generation**  
+   - Open the Unity project in `DataGenerator/`.  
+   - Configure and run the dataset generator.  
+   - See [Dataset Generator Documentation](DataGenerator/unity_dataset_generator_doc.md).
 
-## Part 2: ImageBasedEvaluation model.
+2. **Training & Inference**  
+   - Install Python dependencies:  
+     ```bash
+     pip install torch torchvision tqdm pyyaml
+     ```  
+   - Follow each pipeline’s user guide:  
+     - [Texture Pipeline User Guide](Pipelines/texture_pipeline_user_guide.md)  
+     - [Mesh Pipeline User Guide](Pipelines/mesh_pipeline_user_guide.md)
 
--The model itself needs to be downloaded from https://tinyurl.com/ImageBasedModel, while the sampled dataset from https://tinyurl.com/fhpaax69. As above, copy the content in the subfolder.
+3. **Deployment**  
+   - Follow the instructions in [Deployments README](Deployments/README.md) to build and run the service.
 
--There are two notebookds to handle model training/inference inside the folder.
+---
 
-## Part 3: TODO:
-
--We plan to release an open source full pipeline to utilize the two models in a public game engine such as Unreal Engine. Currently the pipeline stays in proprietary code. However, the techniques described in the paper works independently of any game engine foundation.
-
-
+For detailed information on each component, click the links above.

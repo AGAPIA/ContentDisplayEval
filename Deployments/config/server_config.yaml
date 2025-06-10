@@ -1,0 +1,3 @@
+inference:
+  model_path: checkpoints/texture_stage1/texture_stage1.pth
+  threshold: 0.5

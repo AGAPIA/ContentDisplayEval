@@ -1,0 +1,15 @@
+train:
+  image_dir: data/stage2_train_images
+  metadata_path: data/stage2_train_labels.json
+  batch_size: 32
+  learning_rate: 0.0005
+  epochs: 10
+  output_dir: checkpoints/stage2
+
+inference:
+  image_dir: data/stage2_test_images
+  metadata_path: data/stage2_test_metadata.json
+  model_path: checkpoints/stage2/texture_stage2.pth
+  output_dir: outputs/stage2
+  batch_size: 32
+  threshold: 0.5

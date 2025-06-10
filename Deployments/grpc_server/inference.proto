@@ -1,0 +1,17 @@
+syntax = "proto3";
+package inference;
+
+message Frame {
+  int64 timestamp = 1;
+  string device_id = 2;
+  bytes image_data = 3;
+}
+
+message Prediction {
+  double anomaly_score = 1;
+  bool anomaly_flag = 2;
+}
+
+service Inference {
+  rpc Predict (stream Frame) returns (stream Prediction);
+}

@@ -1,0 +1,17 @@
+train:
+  image_dir: data/mesh_train_images       # Directory with input RGB frames for training
+  mask_dir:  data/mesh_train_masks        # Directory with ground‐truth masks
+  metadata_path: data/mesh_train_metadata.json  # JSON listing {"image":…, "mask":…} entries
+  batch_size: 16
+  learning_rate: 0.0002
+  epochs: 20
+  output_dir: checkpoints/mesh_stage1     # Where to save the trained model
+
+inference:
+  image_dir: data/mesh_test_images        # Directory with frames to run inference on
+  mask_dir:  data/mesh_test_masks         # (Optional) for evaluation/visual comparison
+  metadata_path: data/mesh_test_metadata.json   # JSON listing filenames to process
+  model_path: checkpoints/mesh_stage1/mesh_stage1.pth
+  output_dir: outputs/mesh_stage1         # Where to write masks and results JSON
+  batch_size: 8
+  threshold: 0.3                          # Pixel‐level threshold for binary anomaly flag

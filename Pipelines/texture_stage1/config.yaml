@@ -1,0 +1,19 @@
+# Replace the paths and values as needed for your environment
+
+train:
+  image_dir: path/to/train/images
+  metadata_path: path/to/train/metadata.json
+  batch_size: 32
+  learning_rate: 0.001
+  epochs: 20
+  output_dir: path/to/train/output
+
+model: path/to/pretrained/model.pth
+
+inference:
+  image_dir: path/to/inference/images
+  metadata_path: path/to/inference/metadata.json
+  batch_size: 16
+  model_path: path/to/trained/model.pth
+  threshold: 0.5
+  output_dir: path/to/inference/output
